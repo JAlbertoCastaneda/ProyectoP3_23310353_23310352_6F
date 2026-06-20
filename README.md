@@ -1,4 +1,4 @@
-# ProyectoP3_23310353_23310352_6F# 📊 Visualizador de Métricas de Entrenamiento YOLOv8
+# 👟 Visualizador de Métricas — Detector de Zapatos con YOLOv8
 
 <div align="center">
 
@@ -7,7 +7,7 @@
 ![Matplotlib](https://img.shields.io/badge/Matplotlib-Visualization-orange?style=for-the-badge&logo=python&logoColor=white)
 ![Google Colab](https://img.shields.io/badge/Google%20Colab-Compatible-yellow?style=for-the-badge&logo=googlecolab&logoColor=white)
 
-*Herramienta de visualización de métricas de rendimiento para modelos de detección de objetos entrenados con YOLOv8*
+*Herramienta de visualización de métricas de rendimiento para el modelo de detección de calzado entrenado con YOLOv8*
 
 </div>
 
@@ -17,7 +17,7 @@
 
 | Nombre | Matrícula | Grupo |
 |--------|-----------|-------|
-| **Dario Ibarra Tirado** | 23310353 | 6F |
+| **Rubén Dario Ibarra Tirado** | 23310353 | 6F |
 | **José Alberto Castañeda Sánchez** | 23310352 | 6F |
 
 ---
@@ -38,26 +38,34 @@
 
 ## 📌 Descripción
 
-Este script permite **visualizar de forma clara y profesional** las métricas de rendimiento generadas automáticamente por YOLOv8 al finalizar un proceso de entrenamiento. En lugar de acceder manualmente a los archivos de salida dentro del directorio `runs/`, este visualizador centraliza y despliega la gráfica de resultados con una presentación limpia, sin ejes de píxeles y con un título descriptivo.
+Este script permite **visualizar de forma clara y profesional** las métricas de rendimiento generadas automáticamente por YOLOv8 al finalizar el entrenamiento de nuestro **detector de zapatos**. En lugar de acceder manualmente a los archivos de salida dentro del directorio `runs/`, este visualizador centraliza y despliega la gráfica de resultados con una presentación limpia, sin ejes de píxeles y con un título descriptivo.
 
-Es especialmente útil en entornos como **Google Colab**, donde los archivos se generan en rutas dinámicas (`train`, `train-2`, `train-3`, etc.) y se necesita una verificación rápida del rendimiento del modelo.
+Es especialmente útil en entornos como **Google Colab**, donde los archivos se generan en rutas dinámicas (`train`, `train-2`, `train-3`, etc.) y se necesita una verificación rápida del rendimiento del modelo de detección de calzado.
 
 ---
 
 ## 🔬 Caso de Estudio
 
-### ¿Por qué es importante monitorear las métricas de entrenamiento en YOLOv8?
+### Detección de Zapatos con Visión Artificial: ¿Por qué importa?
 
-El entrenamiento de modelos de visión artificial basados en **Deep Learning**, como YOLOv8, es un proceso iterativo y costoso en términos de tiempo y recursos computacionales. Sin una revisión adecuada de las métricas generadas durante el entrenamiento, es imposible determinar si el modelo:
+La industria del calzado mueve millones de pares al año a través de cadenas de producción, almacenes, puntos de venta y plataformas de comercio electrónico. En este contexto, contar con un sistema capaz de **detectar y reconocer zapatos automáticamente en imágenes o video en tiempo real** abre la puerta a múltiples aplicaciones de alto valor:
 
-- Está **convergiendo** correctamente hacia una solución óptima.
-- Presenta **sobreajuste (overfitting)**: aprende los datos de entrenamiento pero falla en datos nuevos.
-- Sufre de **subajuste (underfitting)**: no logra aprender los patrones relevantes del dataset.
+- **Inventario automatizado** en tiendas y almacenes, eliminando conteos manuales.
+- **Clasificación y etiquetado automático** de productos en plataformas de e-commerce.
+- **Sistemas de seguridad y análisis de comportamiento** en puntos de venta (detección de clientes, tráfico de productos).
+- **Control de calidad** en líneas de producción de calzado para identificar defectos o pares incompletos.
+- **Prueba virtual de calzado** como componente previo en aplicaciones de Realidad Aumentada.
+
+### El Reto del Entrenamiento
+
+Entrenar un modelo YOLOv8 para detectar zapatos no es trivial. El modelo debe aprender a distinguir zapatos en distintas condiciones: diferentes ángulos, iluminación, colores, estilos (tenis, botas, sandalias, tacones) y contextos (sobre una persona, en aparador, en caja). Esto hace que el proceso de entrenamiento sea iterativo y que **monitorear las métricas sea indispensable** para saber si el modelo realmente está aprendiendo a detectar calzado de forma generalizada o simplemente memorizando ejemplos.
+
+Sin una revisión adecuada de las métricas, es imposible determinar si el modelo:
+
+- Está **convergiendo** correctamente y aprendiendo a localizar zapatos.
+- Presenta **sobreajuste (overfitting)**: detecta bien en el dataset de entrenamiento pero falla con zapatos nuevos.
+- Sufre de **subajuste (underfitting)**: no logra aprender las características visuales del calzado.
 - Requiere **ajuste de hiperparámetros** como la tasa de aprendizaje, el número de épocas o el tamaño del batch.
-
-### Contexto del Problema
-
-En proyectos académicos y aplicados de detección de objetos —ya sea para sistemas de seguridad, agricultura de precisión, análisis médico por imágenes o automatización industrial— el tiempo de experimentación es limitado. Los investigadores y desarrolladores necesitan herramientas que les permitan **evaluar rápidamente** el comportamiento del modelo sin interrumpir el flujo de trabajo.
 
 YOLOv8 genera automáticamente un archivo `results.png` con las siguientes métricas clave al finalizar cada entrenamiento:
 
@@ -74,13 +82,13 @@ YOLOv8 genera automáticamente un archivo `results.png` con las siguientes métr
 | `metrics/mAP50(B)` | Mean Average Precision al umbral IoU 0.50 |
 | `metrics/mAP50-95(B)` | mAP promediado entre umbrales IoU 0.50 a 0.95 |
 
-### ¿En qué nos beneficia esta herramienta?
+### ¿En qué nos beneficia esta herramienta para nuestro detector de zapatos?
 
-1. **Ahorro de tiempo:** Evita navegar manualmente entre carpetas para encontrar el archivo correcto de resultados.
-2. **Flexibilidad:** Detecta automáticamente si la carpeta de resultados es `train`, `train-2`, `train-3`, etc., y guía al usuario en caso de no encontrarla.
-3. **Claridad visual:** Presenta la gráfica con un título descriptivo y sin distracciones visuales.
-4. **Reproducibilidad:** Facilita documentar y comparar resultados entre distintas sesiones de entrenamiento.
-5. **Aplicabilidad:** Adaptable a cualquier proyecto que utilice YOLOv8, independientemente del dataset o dominio de aplicación.
+1. **Evaluación rápida del aprendizaje:** Permite ver de un vistazo si el modelo está aprendiendo correctamente a detectar diferentes tipos de calzado a lo largo de las épocas.
+2. **Detección temprana de problemas:** Si la pérdida de validación sube mientras la de entrenamiento baja, es señal de que el modelo está memorizando zapatos del dataset y no generalizando.
+3. **Ahorro de tiempo:** Evita navegar manualmente entre carpetas para encontrar el archivo correcto de resultados tras cada sesión de entrenamiento.
+4. **Flexibilidad entre sesiones:** Detecta automáticamente si la carpeta de resultados es `train`, `train-2`, `train-3`, etc., algo común cuando se experimenta con distintas configuraciones del detector.
+5. **Documentación del progreso:** Facilita capturar y comparar el rendimiento entre distintos experimentos, por ejemplo al variar el dataset de zapatos o los hiperparámetros.
 
 ---
 
@@ -271,7 +279,9 @@ yolov8-metrics-viewer/
 | La imagen se ve muy pequeña | `figsize` muy pequeño | Aumenta a `figsize=(16, 12)` |
 | Error al importar matplotlib | Librería no instalada | Ejecuta `pip install matplotlib` |
 | La imagen está en blanco | Entrenamiento incompleto | Espera a que finalicen al menos 1 época |
-| Carpeta `runs/` no encontrada | No se ha entrenado aún | Ejecuta el entrenamiento con `model.train()` primero |
+| Carpeta `runs/` no encontrada | No se ha entrenado aún | Ejecuta primero el entrenamiento del detector de zapatos con `model.train()` |
+| `mAP50` muy bajo (< 0.4) | Dataset de zapatos insuficiente o mal etiquetado | Revisa las anotaciones y considera aumentar el dataset con más variedad de calzado |
+| Pérdida de validación sube | Sobreajuste al dataset de zapatos | Reduce épocas, aplica data augmentation o amplía el dataset |
 
 ---
 
@@ -287,8 +297,8 @@ yolov8-metrics-viewer/
 
 <div align="center">
 
-**CETI COLOMOS-Ingeniería en Mecatrónica · Grupo 6F · 2025**
+**CETI Colomos - Ingeniería en Mecatrónica · Grupo 6F · 2025**
 
-*Desarrollado con 💻 por Rubén Dario Ibarra Tirado y José Alberto Castañeda Sánchez*
+*Desarrollado con 💻 por Dario Ibarra Tirado y José Alberto Castañeda Sánchez*
 
 </div>
